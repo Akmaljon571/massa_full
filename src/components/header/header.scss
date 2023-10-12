@@ -10,7 +10,8 @@
 }
 
 .head {
-    width: 1368px;
+    max-width: 1368px;
+    width: 100%;
     position: fixed;
     padding: 0;
     margin-bottom: 84px;
@@ -187,5 +188,19 @@
         .line {
             border: 0.5px solid #333333;
         }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .head {
+        select {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .head {
+        max-width: 700px;
     }
 }

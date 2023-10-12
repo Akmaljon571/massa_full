@@ -1,30 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import db from '../../db/filter.json'
+import { useLocation, useNavigate } from 'react-router-dom';
+import useStart from '../../hooks/useStart';
 import './category.scss'
-import { useNavigate } from 'react-router-dom';
 
 function Category() {
-    const [filter, setFilter] = useState(JSON.parse(localStorage.getItem('filter')) || [1]);
+    const [filter, setFilter] = useState(Number(useLocation().pathname.split('/category/')[1]) || 0);
     const navigate = useNavigate()
+    const { setHero, hero } = useStart()
+    const [data, setData] = useState([]);
 
     const click = (id) => {
-        if (filter.includes(id)) {
-            const newFilter = filter.filter(e => e !== id)
-            setFilter(newFilter)
-            localStorage.setItem('filter', JSON.stringify(newFilter))
-            navigate(`/category/${id}`)
-        } else {
-            const newFilter = [...filter, id]
-            setFilter(newFilter)
-            localStorage.setItem('filter', JSON.stringify(newFilter))
-            navigate(`/category/${id}`)
-        }
+        setFilter(id)
+        navigate(`/category/${id}`)
+        setHero('')
     }
+
+    useEffect(() => {
+        console.log(db.filter(e => e.category === hero))
+        setData(db.filter(e => e.category === hero))
+    }, [hero]);
 
     return (
         <ul className='category'>
-            {db?.length ? db.map(e => 
-                <li onClick={() => click(e.id)} className={filter.includes(e.id) ? "active-cat" : ""} key={e.id}>
+            {db?.length ? data.map(e => 
+                <li onClick={() => click(e.id)} className={filter === e.id ? "active-cat" : ""} key={e.id}>
                     {e.title}
                 </li>
             ) : null}

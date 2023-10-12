@@ -6,9 +6,18 @@ import like from '../../img/heart.svg'
 import arrow from '../../img/Vector 256.svg'
 import Karzinka from '../../img/fi_shopping-bag.svg'
 import Category from '../category/category'
+import { useEffect, useState } from 'react'
 
 function Header() {
     const { setHero, hero } = useStart()
+    const [findHero, setFindHero] = useState(hero);
+
+    useEffect(() => {
+        if (hero) {
+            setFindHero(hero)
+        }
+    }, [hero]);
+
     return (
        <div className="head-fath">
             <div className={hero ? "head head-active" : "head"}>
@@ -18,22 +27,22 @@ function Header() {
                             <img src={logo} alt="Company logo" />
                         </a>
                         <ul>
-                            <li className={hero === 'man' ? "active" : ""} onClick={() => setHero('man')}>
+                            <li className={findHero === 'man' ? "active" : ""} onClick={() => setHero('man')}>
                                 man
                             </li>
-                            <li className={hero === 'woman' ? "active" : ""} onClick={() => setHero('woman')}>
+                            <li className={findHero === 'woman' ? "active" : ""} onClick={() => setHero('woman')}>
                                 woman
                                 <span></span>
                             </li>
-                            <li className={hero === 'children' ? "active" : ""} onClick={() => setHero('children')}>
+                            <li className={findHero === 'children' ? "active" : ""} onClick={() => setHero('children')}>
                                 children
                                 <span></span>
                             </li>
-                            <li className={hero === 'sale' ? "active" : ""} onClick={() => setHero('sale')}>
+                            <li className={findHero === 'sale' ? "active" : ""} onClick={() => setHero('sale')}>
                                 sale
                                 <span></span>
                             </li>
-                            <li className={hero === 'collection' ? "active" : ""} onClick={() => setHero('collection')}>
+                            <li className={findHero === 'collection' ? "active" : ""} onClick={() => setHero('collection')}>
                                 collection
                             </li>
                         </ul>
@@ -46,16 +55,16 @@ function Header() {
                         </select>
                         <hr className='hr' />
                         <div className='list'>
-                            <div className={hero === 'profile' ? "active" : ""} onClick={() => setHero('profile')}>
+                            <div className={findHero === 'profile' ? "active" : ""} onClick={() => setHero('profile')}>
                                 <img src={profile} alt="profile" />
                             </div>
                             <hr />
-                            <div className={hero === 'like' ? "active" : ""} onClick={() => setHero('like')}>
+                            <div className={findHero === 'like' ? "active" : ""} onClick={() => setHero('like')}>
                                 <img src={like} alt="profile" />
                                 <span></span>
                             </div>
                             <hr />
-                            <div className={hero === 'Karzinka' ? "active" : ""} onClick={() => setHero('Karzinka')}>
+                            <div className={findHero === 'Karzinka' ? "active" : ""} onClick={() => setHero('Karzinka')}>
                                 <img src={Karzinka} alt="profile" />
                                 <span></span>
                             </div>
