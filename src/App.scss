@@ -25,3 +25,12 @@ body {
       monospace;
   }
 
+  .none {
+    display: none;
+  }
+
+@media screen and (max-width: 800px) {
+  .t_none {
+    display: none !important;
+  }
+}

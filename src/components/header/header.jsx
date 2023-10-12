@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 function Header() {
     const { setHero, hero } = useStart()
     const [findHero, setFindHero] = useState(hero);
+    const [menu, setMenu] = useState(true);
 
     useEffect(() => {
         if (hero) {
@@ -26,7 +27,30 @@ function Header() {
                         <a href="/">
                             <img src={logo} alt="Company logo" />
                         </a>
-                        <ul>
+                        <ul className='t_none header_list'>
+                            <li className={findHero === 'man' ? "active" : ""} onClick={() => setHero('man')}>
+                                man
+                            </li>
+                            <li className={findHero === 'woman' ? "active" : ""} onClick={() => setHero('woman')}>
+                                woman
+                                <span></span>
+                            </li>
+                            <li className={findHero === 'children' ? "active" : ""} onClick={() => setHero('children')}>
+                                children
+                                <span></span>
+                            </li>
+                            <li className={findHero === 'sale' ? "active" : ""} onClick={() => setHero('sale')}>
+                                sale
+                                <span></span>
+                            </li>
+                            <li className={findHero === 'collection' ? "active" : ""} onClick={() => setHero('collection')}>
+                                collection
+                            </li>
+                        </ul>
+                        <div onClick={() => setMenu(!menu)} className='none menu'>
+                            menu
+                        </div>
+                        <ul className={menu ? "menu-list" : 'none menu-list'}>
                             <li className={findHero === 'man' ? "active" : ""} onClick={() => setHero('man')}>
                                 man
                             </li>
@@ -53,7 +77,7 @@ function Header() {
                             <option value="en">Uzbek</option>
                             <option value="en">Ruscha</option>
                         </select>
-                        <hr className='hr' />
+                        <hr className='hr t_none' />
                         <div className='list'>
                             <div className={findHero === 'profile' ? "active" : ""} onClick={() => setHero('profile')}>
                                 <img src={profile} alt="profile" />
