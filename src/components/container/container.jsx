@@ -2,7 +2,7 @@ import "./container.scss"
 
 function Container({children}) {
     return ( 
-        <div className="Container">
+        <div className="container">
             {children}
         </div> 
     );

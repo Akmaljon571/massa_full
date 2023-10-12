@@ -1,11 +1,13 @@
-import { Header, Main, Footer } from './components'
+import { Header, Main, Footer, Container } from './components'
 import './App.scss';
 function App() {
     return (
       <>
         <Header />
-        <Main />
-        <Footer />
+        <Container>
+          {/* <Main />
+          <Footer /> */}
+        </Container>
       </>
     )
 } 

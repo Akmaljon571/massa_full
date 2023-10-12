@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { State } from '../content/start'
+import { State } from '../context/start'
 
 function useStart() {
-   const {} = useContext(State)
+   const {hero, setHero} = useContext(State)
 
-   return {}
-  
+   return {hero, setHero}
 }
 
 export default useStart;
